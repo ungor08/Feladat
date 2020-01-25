@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^feladatok/?$ handler.php
+RewriteRule ^feladatok/([0-9]+)?$ handler.php?id=$1

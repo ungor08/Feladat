@@ -1,0 +1,312 @@
+/**
+ * @class Ext.dataview.ItemHeader
+ */
+
+//# fashion replaces $list-group-header-color
+/**
+ * @var {color}
+ * Feladatok ItemHeader color
+ */
+$itemheader-color: dynamic($highlight-color);
+
+/**
+ * @var {color}
+ * Feladatok ItemHeader color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ */
+$itemheader-pinned-color: dynamic(null);
+
+//# fashion replaces $list-group-header-background-color
+/**
+ * @var {color}
+ * Feladatok ItemHeader background-color
+ */
+$itemheader-background-color: dynamic($neutral-light-color);
+
+/**
+ * @var {color}
+ * Feladatok ItemHeader background-color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ */
+$itemheader-pinned-background-color: dynamic(null);
+
+/**
+ * @var {number/list}
+ * Feladatok ItemHeader border-width
+ */
+$itemheader-border-width: dynamic($listitem-border-width);
+
+/**
+ * @var {string}
+ * Feladatok ItemHeader border-style
+ */
+$itemheader-border-style: dynamic($listitem-border-style);
+
+//# fashion replaces $list-group-header-border-color
+/**
+ * @var {color}
+ * Feladatok ItemHeader border-color
+ */
+$itemheader-border-color: dynamic($neutral-medium-dark-color);
+
+/**
+ * @var {color}
+ * Feladatok ItemHeader border-color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ */
+$itemheader-pinned-border-color: dynamic(null);
+
+/**
+ * @var {number}
+ * Feladatok ItemHeader outline-width when focused
+ */
+$itemheader-focused-outline-width: dynamic($listitem-focused-outline-width);
+
+/**
+ * @var {string}
+ * Feladatok ItemHeader outline-style when focused
+ */
+$itemheader-focused-outline-style: dynamic($listitem-focused-outline-style);
+
+/**
+ * @var {color}
+ * Feladatok ItemHeader outline-color when focused
+ */
+$itemheader-focused-outline-color: dynamic($listitem-focused-outline-color);
+
+/**
+ * @var {number}
+ * Feladatok ItemHeader outline-offset when focused
+ */
+$itemheader-focused-outline-offset: dynamic($listitem-focused-outline-offset);
+
+/**
+ * @var {list}
+ * Feladatok ItemHeader box-shadow
+ */
+$itemheader-box-shadow: dynamic(null);
+
+/**
+ * @var {list}
+ * Feladatok ItemHeader box-shadow when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ */
+$itemheader-pinned-box-shadow: dynamic($listitem-pinned-box-shadow);
+
+/**
+ * @var {list}
+ * Feladatok ItemHeader box-shadow when {@link Ext.dataview.Feladatok#pinFooters pinned} to the bottom
+ */
+$itemheader-pinned-bottom-box-shadow: dynamic($listitem-pinned-bottom-box-shadow);
+
+//# fashion replaces $list-group-header-font-weight
+/**
+ * @var {string/number}
+ * Feladatok ItemHeader font-weight
+ */
+$itemheader-font-weight: dynamic($font-weight-bold);
+
+//# fashion replaces $list-group-header-font-size
+/**
+ * @var {number}
+ * Feladatok ItemHeader font-size
+ */
+$itemheader-font-size: dynamic($listitem-font-size);
+
+//# fashion replaces $list-group-header-font-size-big
+/**
+ * @var {number}
+ * Feladatok ItemHeader font-size in the {@link Global_CSS#$enable-big big} sizing scheme
+ */
+$itemheader-font-size-big: dynamic($listitem-font-size-big);
+
+//# fashion replaces $list-group-header-line-height
+/**
+ * @var {number}
+ * Feladatok ItemHeader line-height
+ */
+$itemheader-line-height: dynamic($listitem-line-height);
+
+//# fashion replaces $list-group-header-line-height-big
+/**
+ * @var {number}
+ * Feladatok ItemHeader line-height in the {@link Global_CSS#$enable-big big} sizing scheme
+ */
+$itemheader-line-height-big: dynamic($listitem-line-height-big);
+
+//# fashion replaces $list-group-header-font-family
+/**
+ * @var {string}
+ * Feladatok ItemHeader font-family
+ */
+$itemheader-font-family: dynamic($listitem-font-family);
+
+//# fashion replaces $list-group-header-padding
+/**
+ * @var {number/list}
+ * Feladatok ItemHeader padding
+ */
+$itemheader-padding: dynamic($listitem-padding);
+
+//# fashion replaces $list-group-header-padding-big
+/**
+ * @var {number/list}
+ * Feladatok ItemHeader padding in the {@link Global_CSS#$enable-big big} sizing scheme
+ */
+$itemheader-padding-big: dynamic($listitem-padding-big);
+
+/**
+ * Creates a visual theme for a Feladatok ItemHeader.
+ *
+ * @param {string} $ui
+ * The name of the UI being created. Can not included spaces or special punctuation
+ * (used in CSS class names).
+ *
+ * @param {String} [$xtype=itemheader] (protected) The {@link Ext.Class#xtype} to use
+ * in CSS selectors.  For use by UI mixins of derived classes.
+ *
+ * @param {color} $color
+ * Feladatok ItemHeader color
+ *
+ * @param {color} $pinned-color
+ * Feladatok ItemHeader color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ *
+ * @param {color} $background-color
+ * Feladatok ItemHeader background-color
+ *
+ * @param {color} $pinned-background-color
+ * Feladatok ItemHeader background-color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ *
+ * @param {number/list} $border-width
+ * Feladatok ItemHeader border-width
+ *
+ * @param {string} $border-style
+ * Feladatok ItemHeader border-style
+ *
+ * @param {color} $border-color
+ * Feladatok ItemHeader border-color
+ *
+ * @param {color} $pinned-border-color
+ * Feladatok ItemHeader border-color when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ *
+ * @param {number} $focused-outline-width
+ * Feladatok ItemHeader outline-width when focused
+ *
+ * @param {string} $focused-outline-style
+ * Feladatok ItemHeader outline-style when focused
+ *
+ * @param {color} $focused-outline-color
+ * Feladatok ItemHeader outline-color when focused
+ *
+ * @param {number} $focused-outline-offset
+ * Feladatok ItemHeader outline-offset when focused
+ *
+ * @param {list} $box-shadow
+ * Feladatok ItemHeader box-shadow
+ *
+ * @param {list} $pinned-box-shadow
+ * Feladatok ItemHeader box-shadow when {@link Ext.dataview.Feladatok#pinHeaders pinned}
+ *
+ * @param {list} $pinned-bottom-box-shadow
+ * Feladatok ItemHeader box-shadow when {@link Ext.dataview.Feladatok#pinFooters pinned} to the bottom
+ *
+ * @param {string/number} $font-weight
+ * Feladatok ItemHeader font-weight
+ *
+ * @param {number} $font-size
+ * Feladatok ItemHeader font-size
+ *
+ * @param {number} $font-size-big
+ * Feladatok ItemHeader font-size in the {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {number} $line-height
+ * Feladatok ItemHeader line-height
+ *
+ * @param {number} $line-height-big
+ * Feladatok ItemHeader line-height in the {@link Global_CSS#$enable-big big} sizing scheme
+ *
+ * @param {string} $font-family
+ * Feladatok ItemHeader font-family
+ *
+ * @param {number/list} $padding
+ * Feladatok ItemHeader padding
+ *
+ * @param {number/list} $padding-big
+ * Feladatok ItemHeader padding in the {@link Global_CSS#$enable-big big} sizing scheme
+ */
+@mixin itemheader-ui(
+    $ui: null,
+    $xtype: itemheader,
+    $color: null,
+    $pinned-color: null,
+    $background-color: null,
+    $pinned-background-color: null,
+    $border-width: null,
+    $border-style: null,
+    $border-color: null,
+    $pinned-border-color: null,
+    $focused-outline-width: null,
+    $focused-outline-style: null,
+    $focused-outline-color: null,
+    $focused-outline-offset: null,
+    $box-shadow: null,
+    $pinned-box-shadow: null,
+    $pinned-bottom-box-shadow: null,
+    $font-weight: null,
+    $font-size: null,
+    $font-size-big: null,
+    $line-height: null,
+    $line-height-big: null,
+    $font-family: null,
+    $padding: null,
+    $padding-big: null
+) {
+    $ui-suffix: ui-suffix($ui);
+
+    .#{$prefix}#{$xtype}#{$ui-suffix} {
+        color: $color;
+        background-color: $background-color;
+        @include border($border-width, $border-style, $border-color);
+        @include font($font-weight, $font-size, $line-height, $font-family);
+        box-shadow: $box-shadow;
+        margin-bottom: -(bottom($border-width));
+
+        + .#{$prefix}scrolldock-end {
+            margin-top: bottom($border-width)
+        }
+
+        @if $enable-big  {
+            .#{$prefix}big & {
+                font-size: $font-size-big;
+                line-height: $line-height-big;
+            }
+        }
+
+        &.#{$prefix}pinned {
+            color: $pinned-color;
+            background-color: $pinned-background-color;
+            border-color: $pinned-border-color;
+            box-shadow: $pinned-box-shadow;
+        }
+
+        &.#{$prefix}pinned-bottom {
+            box-shadow: $pinned-bottom-box-shadow;
+        }
+
+        &.#{$prefix}focused {
+            .#{$prefix}keyboard-mode & {
+                @include outline(
+                    $width: $focused-outline-width,
+                    $style: $focused-outline-style,
+                    $color: $focused-outline-color,
+                    $offset: $focused-outline-offset,
+                    $border-width: $border-width
+                );
+            }
+        }
+
+    }
+
+    @include toolable-ui(
+        $ui: $ui,
+        $xtype: $xtype,
+        $padding: $padding,
+        $padding-big: $padding-big
+    );
+}
