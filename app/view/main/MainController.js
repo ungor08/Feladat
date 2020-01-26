@@ -223,13 +223,14 @@ Ext.define('feladat.view.main.MainController', {
 
         property = 'letrehozas_datuma';
         value = Ext.getCmp('lh_datuma').getValue();
-        Ext.JSON.encodeDate = function(value) {
-            value = Ext.Date.format(value, '"Y.m.d."');
-        };
-        console.log('value.getDate()', value.getDate());
+        // dateField
+        // Ext.JSON.encodeDate = function(value) {
+        //     value = Ext.Date.format(value, '"Y.m.d."');
+        // };
+        // console.log('value.getDate()', value.getDate());
         
-        value.setDate(value.getDate() + 1);
-        value = value.toISOString();
+        // value.setDate(value.getDate() + 1);
+        // value = value.toISOString();
         console.log('létrehozás dátuma', value);
         
         if (grid.store.filters) {
@@ -260,12 +261,12 @@ Ext.define('feladat.view.main.MainController', {
         console.log(ui_nev, fe_leiras, lh_datuma);
         
         store = Ext.getCmp('feladatokgrid').getStore();
-    
-        if (ui_nev.length > 0 || fe_leiras.length > 0 || lh_datuma.length > 0) {
-            store.clearFilter();
+        store.clearFilter();
+        if (ui_nev.length > 0 || ui_nev != null || fe_leiras.length > 0 || fe_leiras != null || lh_datuma.length > 0 || lh_datuma != null) {
+            
             Ext.getCmp('ui_nev').setValue('');
             Ext.getCmp('fe_leiras').setValue('');
-            Ext.getCmp('lh_datuma').reset();
+            Ext.getCmp('lh_datuma').setValue('0000.00.00.');
         }
     },
 

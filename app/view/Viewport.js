@@ -34,6 +34,7 @@ Ext.define('feladat.view.Viewport', {
                     itemId: 'kereses',
                     collapsible: true,
                     split: true,
+                    collapsed: true,
                     width: 400
                 }, 
                 {
