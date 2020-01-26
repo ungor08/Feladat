@@ -1,8 +1,7 @@
 Ext.define('feladat.model.Ugyintezok', {
     extend: 'feladat.model.Base',
     idProperty: 'ugyintezo_azonosito',
-    idProperty: 'feladat_azonosito',
-    clientIdProperty: 'clientId',
+    clientIdProperty: 'clientId2',
     identifier: 'negative',
     fields: [
         {

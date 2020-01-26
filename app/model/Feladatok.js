@@ -1,8 +1,8 @@
 Ext.define('feladat.model.Feladatok', {
     extend: 'feladat.model.Base',
-
+    alias: 'feladatok',
     idProperty: 'feladat_azonosito',
-    clientIdProperty: 'clientId',
+    clientIdProperty: 'id',
     identifier: 'negative',
 
     fields: [
@@ -33,7 +33,8 @@ Ext.define('feladat.model.Feladatok', {
         },
         writer: {
             type: 'json',
-            writeRecordId: false
+            writeRecordId: true,
+            writeAllFields: true
         }
     }
 });

@@ -10,7 +10,15 @@ Ext.define('feladat.store.Feladatok', {
     model: 'feladat.model.Feladatok',
     autoLoad: true,
     autoSync: true,
-    
+
+    sorters: [{
+        property: 'letrehozas_datuma',
+        direction: 'ASC'
+    }],
+
+    // idProperty: 'feladat_azonosito',
+    // clientIdProperty: 'id',
+    // identifier: 'negative',
 
     proxy: {
         type: 'rest',
@@ -22,7 +30,8 @@ Ext.define('feladat.store.Feladatok', {
         },
         writer: {
             type: 'json',
-            writeRecordId: true
+            writeRecordId: true,
+            writeRecord: 'data'
         }
     }
 });

@@ -13,7 +13,7 @@ Ext.define('feladat.store.Ugyintezok', {
    
     proxy: {
         type: 'rest',
-        url: 'http://localhost/feladat/php/api/ugyintezo/read.php',
+        url: 'http://localhost/feladat/php/ugyintezok',
         useDefaultXhrHeader: false,
         cors: true,
         reader: {

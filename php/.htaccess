@@ -1,3 +1,4 @@
 RewriteEngine On
-RewriteRule ^feladatok/?$ handler.php
-RewriteRule ^feladatok/([0-9]+)?$ handler.php?id=$1
+RewriteRule ^feladatok/?$ feladatok.php
+RewriteRule ^feladatok/([0-9]+)?$ feladatok.php?id=$1
+RewriteRule ^ugyintezok/?$ ugyintezok.php
