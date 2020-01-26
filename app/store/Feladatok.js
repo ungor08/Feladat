@@ -10,7 +10,7 @@ Ext.define('feladat.store.Feladatok', {
     model: 'feladat.model.Feladatok',
     autoLoad: true,
     autoSync: true,
-
+    // pageSize: 10,
     sorters: [{
         property: 'letrehozas_datuma',
         direction: 'ASC'

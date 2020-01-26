@@ -38,6 +38,10 @@ Ext.define('feladat.view.ablakok.Modositas', {
                 store : {
                     type : 'ugyintezok'
                 },
+                required: true,
+                validator: function(val) {
+                    return (val.trim().length > 0) ? true : "A mező kitöltése kötelező!";
+                },
                 labelAlign: 'top',
                 cls: 'field-margin',
                 flex: 1
@@ -49,6 +53,10 @@ Ext.define('feladat.view.ablakok.Modositas', {
                 maxRows: 4,
                 border: true,
                 name: 'feladat_leiras',
+                required: true,
+                validator: function(val) {
+                    return (val.trim().length > 0) ? true : "A mező kitöltése kötelező!";
+                },
                 labelAlign: 'top',
                 cls: 'field-margin',
                 flex: 1        

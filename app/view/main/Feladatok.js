@@ -18,10 +18,10 @@ Ext.define('feladat.view.main.Feladatok', {
     plugins: {
         gridfilters: true
     },
-        bbar: {
-        xtype: 'pagingtoolbar',
-        displayinfo: true
-    },
+    // bbar: {
+    //     xtype: 'pagingtoolbar',
+    //     displayinfo: true
+    // },
     
     title: 'Feladatok',
 
@@ -34,12 +34,13 @@ Ext.define('feladat.view.main.Feladatok', {
             text: 'Azonosító',
             dataIndex: 'feladat_azonosito',
             editable: false,
+            filter: 'number',
             flex: 0.5,
-            cell: {userCls: 'bold'}
         },
         {
             text: 'Ügyintéző neve',
             dataIndex: 'ugyintezo_nev',
+            filter: 'string',
             editable: false, 
             flex: 1,
         },
@@ -48,6 +49,7 @@ Ext.define('feladat.view.main.Feladatok', {
             dataIndex: 'ugyintezo_email',
             editable: false,
             flex: 1,
+            filter: 'string',
             renderer: function(value) {
                 return Ext.String.format('<a href="mailto:{0}">{1}</a>', value, value);
             }
@@ -56,13 +58,15 @@ Ext.define('feladat.view.main.Feladatok', {
             text: 'Létrehozás dátuma',
             dataIndex: 'letrehozas_datuma',
             xtype: 'datecolumn',   
-            // format:'Y.m.d.',
+            format:'Y.m.d.',
+            filter: 'date',
             editable: false,
             flex: 1,
         },
         {
             text: 'Leírás',
             dataIndex: 'feladat_leiras',
+            filter: 'string',
             editable: false,
             flex: 1,
         }

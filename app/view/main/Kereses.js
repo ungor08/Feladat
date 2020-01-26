@@ -53,8 +53,8 @@ Ext.define('feladat.view.main.Kereses', {
                 fieldLabel: 'Létrehozás dátuma', 
                 name: 'lh_datuma',
                 id: 'lh_datuma',
-                // format: 'Y.m.d.',
-                // placeholder: 'ÉÉÉÉ.hh.nn.',
+                format: 'Y.m.d.',
+                placeholder: 'ÉÉÉÉ.hh.nn.',
                 labelAlign: 'top',
                 cls: 'field-margin',
                 flex: 1

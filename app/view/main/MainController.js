@@ -25,20 +25,31 @@ Ext.define('feladat.view.main.MainController', {
 
     mentes: function() {
 
-        var feladat, ugyintezo_azonosito, feladat_leiras, store;
+        var feladat, ugyintezo_azonosito, feladat_leiras, feladat_store, ugyintezo_store, ugyintezo_record;
+        feladat_store = Ext.getStore('feladatok');
+        ugyintezo_store = Ext.getStore('ugyintezok');
 
         ugyintezo_azonosito = Ext.getCmp('u_azonosito').getValue();
-        feladat_leiras  = Ext.getCmp('f_leiras').getValue();
-        store = Ext.getStore('feladatok');
-        feladat = Ext.create('feladatok', { ugyintezo_azonosito: ugyintezo_azonosito, feladat_leiras: feladat_leiras });
-        feladat.save();
         
-        // store.insert(0, [{ ugyintezo_azonosito: ugyintezo_azonosito, feladat_leiras: feladat_leiras }]);
-        store.sync();
+        feladat_leiras  = Ext.getCmp('f_leiras').getValue();
+        
+        if (ugyintezo_azonosito == null || ugyintezo_azonosito.length == 0 || feladat_leiras == null || feladat_leiras.length == 0) {
+            alert('Nincs minden mező kitöltve!');
+        } else {
+            ugyintezo_record = ugyintezo_store.getById(ugyintezo_azonosito);
 
-        this.getView().destroy();
-
-        // window.location.reload();        
+            ugyintezo_nev = ugyintezo_record.data.ugyintezo_nev;
+            ugyintezo_email = ugyintezo_record.data.ugyintezo_email;
+            
+            feladat = Ext.create('feladatok', { ugyintezo_azonosito: ugyintezo_azonosito, ugyintezo_nev: ugyintezo_nev, ugyintezo_email: ugyintezo_email, feladat_leiras: feladat_leiras });
+            feladat.save();
+            
+            this.getView().destroy();
+            
+            feladat_store.reload();
+        }
+        
+    
     },
 
     megse: function() {
@@ -50,7 +61,12 @@ Ext.define('feladat.view.main.MainController', {
         console.log('data', data);
         
         if (data.length == 0) {
-            Ext.Msg.alert('Hiba', 'Nincs kijelölve feladat!', Ext.emptyFn);
+            Ext.Msg.show({
+                title:'Hiba',
+                message: 'Nincs kijelölve feladat!',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.ERROR   
+            });
         } else {
             var form = Ext.create('feladat.view.ablakok.Modositas');
         
@@ -70,43 +86,60 @@ Ext.define('feladat.view.main.MainController', {
         ugyintezo_azonosito  = Ext.getCmp('u_azonosito').getValue();
         feladat_leiras = Ext.getCmp('f_leiras').getValue();
 
-        feladat_store = Ext.getStore('feladatok');
-        feladat_record = feladat_store.getById(id);
-        console.log('record.data', feladat_record.data);
+        if (ugyintezo_azonosito == null || ugyintezo_azonosito.length == 0 || feladat_leiras == null || feladat_leiras.length == 0) {
+            alert('Nincs minden mező kitöltve!');
+        } else {
+            feladat_store = Ext.getStore('feladatok');
+            feladat_record = feladat_store.getById(id);
+            console.log('record.data', feladat_record.data);
 
-        ugyintezo_store = Ext.getStore('ugyintezok');
-        ugyintezo_record = ugyintezo_store.getById(ugyintezo_azonosito);         // az új ügyintéző adatai
-        console.log('ugyintezo_record.data', ugyintezo_record.data);
-        
-        feladat_record.data.ugyintezo_azonosito = ugyintezo_azonosito;
-        feladat_record.data.ugyintezo_nev = ugyintezo_record.data.ugyintezo_nev;
-        feladat_record.data.ugyintezo_email = ugyintezo_record.data.ugyintezo_email;
-        feladat_record.data.feladat_leiras  = feladat_leiras;
-        feladat_record.data.letrehozas_datuma = data[0].data.letrehozas_datuma;
-        
-        feladat_record.save();
+            ugyintezo_store = Ext.getStore('ugyintezok');
+            ugyintezo_record = ugyintezo_store.getById(ugyintezo_azonosito);         
+            console.log('ugyintezo_record.data', ugyintezo_record.data);
+            
+            feladat_record.data.ugyintezo_azonosito = ugyintezo_azonosito;
+            feladat_record.data.ugyintezo_nev = ugyintezo_record.data.ugyintezo_nev;
+            feladat_record.data.ugyintezo_email = ugyintezo_record.data.ugyintezo_email;
+            feladat_record.data.feladat_leiras  = feladat_leiras;
+            feladat_record.data.letrehozas_datuma = data[0].data.letrehozas_datuma;
+            
+            feladat_record.save();
 
-        feladat_store.sync();
+            feladat_store.sync();
 
-        this.getView().destroy(); 
-
+            this.getView().destroy(); 
+        }
     },
 
 
     Torles: function (sender, record) {
         var data = Ext.getCmp('feladatokgrid').getSelectionModel().getSelection();
         if (data.length == 0) {
-            Ext.Msg.alert('Hiba', 'Nincs kijelölve feladat!', Ext.emptyFn);
+            Ext.Msg.show({
+                title:'Hiba',
+                message: 'Nincs kijelölve feladat!',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.ERROR   
+            });
         } else {
             var id = data[0].data.feladat_azonosito;
             var store = Ext.getStore('feladatok');
             var record = store.getById(id);
             console.log('record', record);
-            
-            Ext.MessageBox.confirm('Törlés','Biztos, hogy törölni szeretné a feladatot?',function(btn){
-                if (btn == 'yes'){
-                    store.remove(data);
-                    store.sync();
+            Ext.Msg.show({
+                title:'Törlés',
+                message: 'Biztos, hogy törölni szeretné a feladatot?',
+                buttons: Ext.Msg.YESNO,
+                buttonText: {
+                    yes: 'Igen',
+                    no: 'Nem'
+                },
+                icon: Ext.Msg.QUESTION,
+                fn: function(btn) {
+                    if (btn === 'yes') {
+                        store.remove(data);
+                        store.sync();
+                    } 
                 }
             });
             console.log(data);
@@ -191,8 +224,12 @@ Ext.define('feladat.view.main.MainController', {
         property = 'letrehozas_datuma';
         value = Ext.getCmp('lh_datuma').getValue();
         Ext.JSON.encodeDate = function(value) {
-            return Ext.Date.format(value, '"Y-m-d"');
+            value = Ext.Date.format(value, '"Y.m.d."');
         };
+        console.log('value.getDate()', value.getDate());
+        
+        value.setDate(value.getDate() + 1);
+        value = value.toISOString();
         console.log('létrehozás dátuma', value);
         
         if (grid.store.filters) {
@@ -214,33 +251,9 @@ Ext.define('feladat.view.main.MainController', {
        }
     }, 
 
-    // Kereses: function () {
-    //     store = Ext.getStore('feladatok');
-    //     // field = 'ugyintezo_nev';
-    // //     value = Ext.getCmp('ui_nev').getValue();
-    //     var val1 = Ext.getCmp('ui_nev').getValue();
-                    
-    //     if (val1 !== null) {
-    //         store.filter('ugyintezo_nev', val1);
-    //     }
 
-    //     var val2 = Ext.getCmp('fe_leiras').getValue();
-                    
-    //     if (val2 !== null) {
-    //         store.filter('feladat_leiras', val2);
-    //     }
-
-    //     var val3 = Ext.getCmp('lh_datuma').getValue();
-                    
-    //     if (val3 !== null){
-    //         store.filter('letrehozas_datuma', val3);
-    //     }
-    // },
-
-    
 
     Kiurites: function () {
-        alert('ürítek');
         var ui_nev = Ext.getCmp('ui_nev').getValue();
         var fe_leiras = Ext.getCmp('fe_leiras').getValue();
         var lh_datuma = Ext.getCmp('lh_datuma').getValue();
@@ -252,7 +265,7 @@ Ext.define('feladat.view.main.MainController', {
             store.clearFilter();
             Ext.getCmp('ui_nev').setValue('');
             Ext.getCmp('fe_leiras').setValue('');
-            Ext.getCmp('lh_datuma').setValue('');
+            Ext.getCmp('lh_datuma').reset();
         }
     },
 

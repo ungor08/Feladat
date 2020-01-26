@@ -7,21 +7,30 @@ Ext.define('feladat.model.Feladatok', {
 
     fields: [
         {
-            name: "feladat_azonosito"
+            name: "feladat_azonosito", type: 'int'
         },
         {
-            name: "ugyintezo_nev"
+            name: "ugyintezo_azonosito", type: 'int'
         },
         {
-            name: "ugyintezo_email"
+            name: "ugyintezo_nev", type: 'string'
         },
         {
-            name: "letrehozas_datuma"
+            name: "ugyintezo_email", type: 'string'
         },
         {
-            name: "feladat_leiras"
+            name: "letrehozas_datuma", type: 'date'
+        },
+        {
+            name: "feladat_leiras", type: 'string'
         }
     ],
+
+    validators: {
+        ugyintezo_azonosito: { type: 'length', min: 1 },
+        feladat_leiras: { type: 'length', min: 1 },
+        
+    },
 
     proxy: {
         type: 'rest',
